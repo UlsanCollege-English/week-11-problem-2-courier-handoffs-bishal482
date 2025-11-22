@@ -11,3 +11,4 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: pip install pytest
       - run: python -m pytest -q
+
