@@ -13,24 +13,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          # Assumes you have a requirements.txt file
-          key: ${{ runner.os }}-python-${{ matrix.python-version }}-${{ hashFiles('**/requirements.txt') }}
-          path: ~/.cache/pip # Use the correct path for your OS/package manager
-      
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          # Install pytest and any other project dependencies
-          pip install -r requirements.txt 
-      
+      - name: Install pytest
+        run: pip install pytest
       - name: Run tests
-        run: python -m pytest
+        run: python -m pytest -q
